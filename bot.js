@@ -6,10 +6,6 @@ var twitter = new twit(config);
 
 console.log('Success!!!');
 
-twitter.get('lists/members',{slug:'news',owner_screen_name:'xtradersapp'},function(tweet){
-	console.log(tweet)
-});
-
 // same result as doing { track: 'bananas,oranges,strawberries' }
 var stream = twitter.stream('statuses/filter', { follow:['2568138684','2312333412']})
 
