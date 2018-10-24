@@ -1,0 +1,15 @@
+{
+  "name": "twitter-bot",
+  "version": "1.0.0",
+  "description": "This is a bot to connecting with twitter",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "redis": "^2.8.0",
+    "twit": "^2.2.11"
+  }
+}
