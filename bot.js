@@ -6,10 +6,30 @@ var twitter = new twit(config);
 
 console.log('Success!!!');
 
-// same result as doing { track: 'bananas,oranges,strawberries' }
-var stream = twitter.stream('statuses/filter', { follow:['2568138684','2312333412']})
+var tracking = [
+	'2568138684', 						// xtradersapp
+	'2312333412', 						// ethereum
+	'4826209539',						// Verge
+	'4135644558',						// Cardano
+	'2592325530',						// NEO
+	'2338506822',						// Dash
+	'1051053836',						// Ripple
+	'1393174363',						// Litecoin		
+	'4633094778',						// ZCash		
+	'3992601857',						// IOTA Token		
+	'900959551263985665', 				// inschain
+	'773009781644677120',				// Qtum		
+	'831847934534746114',				// Omise Go	
+	'759252279862104064'				// ethereum classic
+];
+
+// same result as doing { track: 'etherem','xtradersapp','inschain', }
+var stream = twitter.stream('statuses/filter', { follow: tracking })
 
 stream.on('tweet', function (tweet) {
+	if (tweet.text.startsWith('RT')) {
+		return;	
+	}
 	var url = 'https://discordapp.com/api/webhooks/387460095874826252/3ibDvP6j0-wIRY509WFJZU10sgf0VFrHFJnxOjJLiW-uX9XLMRmi4Fz4Ht06BselxgUM';
  	
 	var options = {
@@ -27,7 +47,7 @@ stream.on('tweet', function (tweet) {
 
 	request(options, function(error, response, body){
 		if (error) console.log('send message failed');
-		else console.log('send message to discord successful: '+ JSON.stringify(tweet));
+		else console.log('send message to discord successful');
 	});
 })
 
