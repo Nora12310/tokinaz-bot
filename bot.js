@@ -27,7 +27,7 @@ var tracking = [
 var stream = twitter.stream('statuses/filter', { follow: tracking })
 
 stream.on('tweet', function (tweet) {
-	if (tweet.text.startsWith('RT')) {
+	if (isReply(tweet)) {
 		return;	
 	}
 	var url = 'https://discordapp.com/api/webhooks/387460095874826252/3ibDvP6j0-wIRY509WFJZU10sgf0VFrHFJnxOjJLiW-uX9XLMRmi4Fz4Ht06BselxgUM';
@@ -54,3 +54,14 @@ stream.on('tweet', function (tweet) {
 stream.on('error',function(error){
 	console.log(error);
 })
+
+
+function isReply(tweet) {
+  if ( tweet.retweeted_status
+    || tweet.in_reply_to_status_id
+    || tweet.in_reply_to_status_id_str
+    || tweet.in_reply_to_user_id
+    || tweet.in_reply_to_user_id_str
+    || tweet.in_reply_to_screen_name )
+    return true
+}
